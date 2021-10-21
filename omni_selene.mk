@@ -16,12 +16,8 @@
 # limitations under the License.
 #
 
-# Specify phone tech before including full_phone
-$(call inherit-product, vendor/omni/config/gsm.mk)
-
 # Inherit some common Omni stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
-$(call inherit-product, build/target/product/embedded.mk)
+$(call inherit-product, vendor/twrp/config/common.mk)
 
 # Inherit Telephony packages
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
@@ -47,15 +43,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl \
     android.hardware.boot@1.0-service
-
-PRODUCT_PACKAGES += \
-    bootctrl.$(TARGET_BOARD_PLATFORM)
-    
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.$(TARGET_BOARD_PLATFORM) \
-    libgptutils \
-    libz \
-    libcutils
     
 PRODUCT_PACKAGES += \
     otapreopt_script \
