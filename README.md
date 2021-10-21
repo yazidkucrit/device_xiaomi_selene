@@ -16,7 +16,7 @@ Sync
 $ repo sync --no-repo-verify -c --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune -j`nproc`
 
 Build
-$ source build/envsetup.sh; lunch twrp_a12-eng; mka bootimage
+$ source build/envsetup.sh; lunch omni_selene-eng; mka bootimage
 
 
 
