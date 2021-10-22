@@ -1,7 +1,7 @@
 # device_xiaomi_selene
 tree build TWRP
 
-HOW TO BUILD
+# HOW TO BUILD
 
 Create dirs
 $ mkdir tw; cd tw
@@ -23,5 +23,5 @@ $ source build/envsetup.sh; lunch omni_selene-eng; mka bootimage
 
 
 # STILL ON TEST BUILD
-# NOT ALL SOURCE READY
+# TOUCHSCREEN NOT WORKING
 
