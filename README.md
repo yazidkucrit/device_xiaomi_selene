@@ -23,5 +23,5 @@ $ source build/envsetup.sh; lunch omni_selene-eng; mka bootimage
 
 
 # STILL ON TEST BUILD
-# TOUCHSCREEN NOT WORKING
+# DECRIPTION NOT WORKING
 
