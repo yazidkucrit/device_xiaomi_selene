@@ -1,7 +1,7 @@
 #
-# Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
-# Copyright (C) 2020 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2021 The Android Open Source Project
+# Copyright (C) 2021 The TWRP Open Source Project
+# Copyright (C) 2021 SebaUbuntu's TWRP device tree generator
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,15 +26,6 @@ $(call inherit-product, device/xiaomi/selene/device.mk)
 
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
-
-# Fastbootd
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.bootimage.build.date.utc=0 \
-    ro.build.date.utc=0
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := selene

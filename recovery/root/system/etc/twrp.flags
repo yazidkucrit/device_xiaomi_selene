@@ -1,0 +1,30 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# Currently we dont have e2fsck compiled. So fs check would failed.
+# mount point       fstype    device                                                                flags
+/cache              ext4      /dev/block/platform/bootdevice/by-name/rescue                  flags=display="Cache";
+/protect_f          ext4      /dev/block/platform/bootdevice/by-name/protect1                flags=display="Protect_f";backup=1;flashimg=1;
+/protect_s          ext4      /dev/block/platform/bootdevice/by-name/protect2                flags=display="Protect_S";backup=1;flashimg=1;
+/nvdata             ext4      /dev/block/platform/bootdevice/by-name/nvdata                  flags=display="nvdata";backup=1;flashimg=1;
+/nvcfg              ext4      /dev/block/platform/bootdevice/by-name/nvcfg                   flags=display="nvcfg";backup=1;flashimg=1;
+/persist            ext4      /dev/block/platform/bootdevice/by-name/persist                 flags=display="Persist";backup=1;flashimg=1;
+/persistbak         ext4      /dev/block/platform/bootdevice/by-name/persistbak
+/persistent         emmc      /dev/block/platform/bootdevice/by-name/frp                         
+/nvram              emmc      /dev/block/platform/bootdevice/by-name/nvram                   flags=display="nvram";backup=1;flashimg=1;
+/proinfo            emmc      /dev/block/platform/bootdevice/by-name/proinfo                  
+/boot               emmc      /dev/block/platform/bootdevice/by-name/boot                    flags=display="boot";flashimg=1;slotselect;
+/logo               emmc      /dev/block/platform/bootdevice/by-name/logo_a                                              
+/expdb              emmc      /dev/block/platform/bootdevice/by-name/expdb                                       
+/seccfg             emmc      /dev/block/platform/bootdevice/by-name/seccfg                                       
+/tee1               emmc      /dev/block/platform/bootdevice/by-name/tee1                                      
+/tee2               emmc      /dev/block/platform/bootdevice/by-name/tee2                                       
+/spmfw              emmc      /dev/block/platform/bootdevice/by-name/spmfw
+/dtbo               emmc      /dev/block/platform/bootdevice/by-name/dtbo                    flags=display="Dtbo";flashimg=1;
+
+/vbmeta             emmc      /dev/block/platform/bootdevice/by-name/vbmeta                  flags=display="Vbmeta";
+/cust               ext4      /dev/block/platform/bootdevice/by-name/cust
+
+/external_sd        auto      /dev/block/mmcblk1p1  /dev/block/mmcblk1                       flags=display="external_sd";storage;wipeingui;removable;fsflags="utf8"
+/usb-otg            vfat      /dev/block/sda1  /dev/block/sda                                flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8"

@@ -73,4 +73,3 @@ on property:twrp.decrypt.done=true
     
 on boot
      start boot-hal-1-1
-     start health-hal-2-1

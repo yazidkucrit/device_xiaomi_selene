@@ -1,7 +1,7 @@
 #
-# Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
-# Copyright (C) 2020 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2021 The Android Open Source Project
+# Copyright (C) 2021 The TWRP Open Source Project
+# Copyright (C) 2021 SebaUbuntu's TWRP device tree generator
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,27 +21,12 @@ LOCAL_PATH := device/xiaomi/selene
 # Dynamic Partitions
 BOARD_USE_DYNAMIC_PARTITIONS := true
 
-# VNDK
-PRODUCT_TARGET_VNDK_VERSION := 30
-
 # API
 PRODUCT_SHIPPING_API_LEVEL := 30
-
-# Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # Virtual A/B OTA
 $(call inherit-product, \
     $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
-
-# A/B
-ENABLE_VIRTUAL_AB := true
-
-# A/B
-AB_OTA_PARTITIONS += \
-    boot \
-    system \
-    vendor
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
