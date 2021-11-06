@@ -1,7 +1,7 @@
 #
-# Copyright (C) 2021 The Android Open Source Project
-# Copyright (C) 2021 The TWRP Open Source Project
-# Copyright (C) 2021 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2020 The Android Open Source Project
+# Copyright (C) 2020 The TWRP Open Source Project
+# Copyright (C) 2020 SebaUbuntu's TWRP device tree generator
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,12 +21,34 @@ LOCAL_PATH := device/xiaomi/selene
 # Dynamic Partitions
 BOARD_USE_DYNAMIC_PARTITIONS := true
 
+# VNDK
+PRODUCT_TARGET_VNDK_VERSION := 30
+
 # API
 PRODUCT_SHIPPING_API_LEVEL := 30
 
-# Virtual A/B OTA
-$(call inherit-product, \
-    $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+# V A/B
+ENABLE_VIRTUAL_AB := true
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
+# A/B
+AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    lk \
+    logo \
+    md1img \
+    preloader \
+    product \
+    scp \
+    spmfw \
+    sspm \
+    system \
+    tee \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_vendor \
+    vendor
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -36,8 +58,9 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service
+    android.hardware.boot@1.1-impl.recovery \
+    android.hardware.boot@1.1-impl \
+    bootctrl.$(PRODUCT_PLATFORM).recovery
 
 PRODUCT_PACKAGES += \
     bootctrl.mt6768 \
@@ -57,10 +80,12 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     android.hardware.fastboot@1.0-impl-mock.recovery \
     fastbootd
-
+    
+# Health Hal
+PRODUCT_PACKAGES += \
+     android.hardware.health@2.1-impl \
+     android.hardware.health@2.1-service \
+     libhealthd.$(PRODUCT_PLATFORM)
+    
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root) \
             $(LOCAL_PATH)/prebuilt/dtb.img:dtb.img
-            
-# Use props from system instead from recovery build
-TW_OVERRIDE_SYSTEM_PROPS := \
-    "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"

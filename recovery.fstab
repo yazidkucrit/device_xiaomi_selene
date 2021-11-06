@@ -1,19 +1,12 @@
-# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6768/fstab.in.mt6768"
-# 1 "<built-in>" 1
-# 1 "<built-in>" 3
-# 341 "<built-in>" 3
-# 1 "<command line>" 1
-# 1 "<built-in>" 2
-# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6768/fstab.in.mt6768" 2
-# 146 "vendor/mediatek/proprietary/hardware/fstab/mt6768/fstab.in.mt6768"
-system           /system         ext4    ro     wait,slotselect,logical
-vendor           /vendor         ext4    ro     wait,slotselect,logical
-product          /product        ext4    ro     wait,slotselect,logical
+# fstab
+system                                     /system          ext4                ro wait,slotselect,logical
+vendor                                     /vendor          ext4                ro wait,slotselect,logical
+product                                    /product         ext4                ro wait,slotselect,logical
 
-/dev/block/platform/bootdevice/by-name/md_udc    /metadata ext4 noatime,nosuid,nodev,discard        wait,check,formattable
+/dev/block/platform/bootdevice/by-name/md_udc       /metadata        ext4                noatime,nosuid,nodev,discard wait,check,formattable
 
-/dev/block/platform/bootdevice/by-name/userdata  /data     f2fs noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065,inlinecrypt,tran_gc wait,check,formattable,fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption
+/dev/block/by-name/userdata                         /data            f2fs                noatime,nosuid,nodev,discard,noflush_merge,reserve_root=134217,resgid=1065,inlinecrypt,checkpoint_merge,fsync_mode=nobarrier wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption
 
-/dev/block/platform/bootdevice/by-name/misc      /misc     emmc defaults defaults
+/dev/block/platform/bootdevice/by-name/misc         /misc            emmc                defaults       defaults
 
-/dev/block/platform/bootdevice/by-name/boot                 /boot     emmc defaults nofail,slotselect
+/dev/block/platform/bootdevice/by-name/boot         /boot            emmc                defaults       slotselect
