@@ -1,7 +1,7 @@
 #
-# Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
-# Copyright (C) 2020 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2021 The Android Open Source Project
+# Copyright (C) 2021 The TWRP Open Source Project
+# Copyright (C) 2021 SebaUbuntu's TWRP device tree generator
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -119,11 +119,11 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_USES_METADATA_PARTITION := true
 
 # Dynamic Partitions
-BOARD_SUPER_PARTITION_SIZE := 0x220000000
+BOARD_SUPER_PARTITION_SIZE := 9126805504
 BOARD_SUPER_PARTITION_GROUPS := main
 
 BOARD_MAIN_PARTITION_LIST := system system_ext vendor product
-BOARD_MAIN_SIZE := 0x220000000
+BOARD_MAIN_SIZE := 5696502916
 
 # AB Gaming
 AB_OTA_UPDATER := true
