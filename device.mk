@@ -19,7 +19,7 @@
 LOCAL_PATH := device/xiaomi/selene
 
 # Dynamic Partitions
-BOARD_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # VNDK
 PRODUCT_TARGET_VNDK_VERSION := 30
@@ -58,15 +58,13 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl.recovery \
+    android.hardware.boot@1.1-impl-recovery \
     android.hardware.boot@1.1-impl \
+    android.hardware.boot@1.1-service \
     bootctrl.$(PRODUCT_PLATFORM).recovery
 
-PRODUCT_PACKAGES += \
-    bootctrl.mt6768 \
-    libgptutils \
-    libz \
-    libcutils
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -86,6 +84,10 @@ PRODUCT_PACKAGES += \
      android.hardware.health@2.1-impl \
      android.hardware.health@2.1-service \
      libhealthd.$(PRODUCT_PLATFORM)
+     
+# lptool
+PRODUCT_PACKAGES += \
+    lptools
     
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root) \
             $(LOCAL_PATH)/prebuilt/dtb.img:dtb.img

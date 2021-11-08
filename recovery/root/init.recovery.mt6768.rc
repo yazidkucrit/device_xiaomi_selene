@@ -2,9 +2,7 @@ import /microtrust.rc
     
 on init
     export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw:/system/lib64:/system/lib64/hw
-    mkdir /mnt/vendor/persist 0700 root root
-    mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist
-    
+ 
 on fs
     install_keyring
 
@@ -53,9 +51,6 @@ service keymaster-4-0 /system/bin/android.hardware.keymaster@4.0-service.beanpod
     disabled
     oneshot
     seclabel u:r:recovery:s0
-
-on property:vendor.sys.listener.registered=true
-    start gatekeeper-1-0
     
 on property:hwservicemanager.ready=true
     start keymaster-4-0
