@@ -27,7 +27,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 $(call inherit-product, device/xiaomi/selene/device.mk)
 
 # Inherit some common Omni stuff.
-$(call inherit-product, vendor/twrp/config/common.mk)
+$(call inherit-product, vendor/pb/config/common.mk)
 
 # Fastbootd
 PRODUCT_PACKAGES += \
@@ -44,6 +44,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEVICE := selene
 PRODUCT_NAME := omni_selene
 PRODUCT_BRAND := Redmi
-PRODUCT_MODEL := 21061119AG
+PRODUCT_MODEL := 10
 PRODUCT_MANUFACTURER := xiaomi
 PRODUCT_RELEASE_NAME := Redmi 10

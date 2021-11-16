@@ -6,17 +6,17 @@
 /persist            ext4      /dev/block/platform/bootdevice/by-name/persist                   flags=display="Persist";backup=1;
 /persistent         emmc      /dev/block/platform/bootdevice/by-name/frp                       flags=display="Persistent";backup=1;
 /nvram              emmc      /dev/block/platform/bootdevice/by-name/nvram                     flags=display="Nvram";backup=1;
-/logo	              emmc      /dev/block/platform/bootdevice/by-name/logo_a	                   flags=display="Logo";backup=1;
+/logo	            emmc      /dev/block/platform/bootdevice/by-name/logo_a	               flags=display="Logo";backup=1;
 /boot               emmc      /dev/block/platform/bootdevice/by-name/boot                      flags=display="Boot";backup=1;flashimg=1;slotselect;
 /expdb              emmc      /dev/block/platform/bootdevice/by-name/expdb
 /seccfg             emmc      /dev/block/platform/bootdevice/by-name/seccfg   
 /tee                emmc      /dev/block/platform/bootdevice/by-name/tee                       flags=slotselect;            
 /spmfw              emmc      /dev/block/platform/bootdevice/by-name/spmfw                     flags=slotselect;      
-/dtbo               emmc      /dev/block/platform/bootdevice/by-name/dtbo	                     flags=slotselect;
+/dtbo               emmc      /dev/block/platform/bootdevice/by-name/dtbo	               flags=slotselect;
 /otp                emmc      /dev/block/platform/bootdevice/by-name/otp
 /vbmeta             emmc      /dev/block/platform/bootdevice/by-name/vbmeta                    flags=slotselect;display="Vbmeta";backup=1;
 /cust               ext4      /dev/block/platform/bootdevice/by-name/cust                      flags=display="Cust";
 
 # Removable storage
-/external_sd	      auto      /dev/block/mmcblk1p1		/dev/block/mmcblk1	                     flags=display="External_sd";storage;wipeingui;removable;backup=0
-/usbotg		          auto      /dev/block/sda1			/dev/block/sda		                           flags=display="Usb-Otg";storage;removable;backup=0
+/external_sd        vfat      /dev/block/mmcblk1p1  /dev/block/mmcblk1                         flags=display="external_sd";storage;wipeingui;removable;fsflags="utf8"
+/usb-otg            vfat      /dev/block/sda1  /dev/block/sda                                  flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8"
