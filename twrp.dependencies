@@ -1,0 +1,8 @@
+[
+    {
+	"remote": "github",
+	"repository": "Luquidtester/android_kernel_xiaomi_selene",
+	"target_path": "kernel/xiaomi/selene",
+	"revision": "twelve"
+    }
+]
