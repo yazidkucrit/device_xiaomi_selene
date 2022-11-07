@@ -85,9 +85,6 @@ PRODUCT_PACKAGES += \
      android.hardware.health@2.1-service \
      libhealthd.$(PRODUCT_PLATFORM)
      
-# lptool
-PRODUCT_PACKAGES += \
-    lptools
     
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root) \
             $(LOCAL_PATH)/prebuilt/dtb.img:dtb.img
