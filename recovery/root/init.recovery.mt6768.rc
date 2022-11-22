@@ -1,15 +1,9 @@
-import /microtrust.rc
-    
+import /init.microtrust.rc
+
 on init
-    export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw:/system/lib64:/system/lib64/hw
- 
-on fs
-    install_keyring
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/system/lib64/hw
 
 on post-fs
-    start boot-hal-1-1
-    start mtk.plpath.utils.link
-
     # Support A/B feature for EMMC and UFS boot region
     symlink /dev/block/sda /dev/block/mmcblk0boot0
     symlink /dev/block/sdb /dev/block/mmcblk0boot1
@@ -17,20 +11,11 @@ on post-fs
     symlink /dev/block/mmcblk0boot1 /dev/block/platform/bootdevice/by-name/preloader_b
 
     exec u:r:update_engine:s0 root root -- /system/bin/mtk_plpath_utils
+    start mtk.plpath.utils.link
+
+on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
+    install_keyring
     
-service keystore_auth /system/bin/keystore_auth
-    user system
-    group root
-    disabled
-    oneshot
-    seclabel u:r:recovery:s0
-
-service keystore /system/bin/keystore /tmp/misc/keystore
-    user root
-    group root drmrpc readproc log
-    disabled
-    seclabel u:r:recovery:s0
-
 service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
     class main
     user root
@@ -40,36 +25,36 @@ service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
     seclabel u:r:recovery:s0
 
 service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
+    interface android.hardware.gatekeeper@1.0::IGatekeeper default
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-4-0 /system/bin/android.hardware.keymaster@4.0-service.beanpod
+service keymaster-4-1 /system/bin/android.hardware.keymaster@4.1-service.beanpod
+    interface android.hardware.keymaster@4.0::IKeymasterDevice default
+    interface android.hardware.keymaster@4.1::IKeymasterDevice default
     user root
     group root drmrpc
     disabled
     oneshot
     seclabel u:r:recovery:s0
-    
-on property:hwservicemanager.ready=true
-    start keymaster-4-0
-    start gatekeeper-1-0
    
 on property:ro.crypto.state=unsupported
     stop teei_daemon
-    stop keymaster-4-0
+    stop keymaster-4-1
     stop gatekeeper-1-0
     
 on property:ro.crypto.state=unencrypted
     stop teei_daemon
-    stop keymaster-4-0
+    stop keymaster-4-1
     stop gatekeeper-1-0
         
 on property:twrp.all.users.decrypted=true
     stop teei_daemon
     stop keymaster-4-0
     stop gatekeeper-1-0
-    
+   
 on boot
-     start health-hal-2-1
+    start boot-hal-1-2
+    start health-hal-2-1

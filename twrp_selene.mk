@@ -29,17 +29,6 @@ $(call inherit-product, device/xiaomi/selene/device.mk)
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-# Fastbootd
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery
-
-# HACK: Set vendor patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.security_patch=2099-12-31 \
-    ro.bootimage.build.date.utc=0 \
-    ro.build.date.utc=0
-
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := selene
 PRODUCT_NAME := twrp_selene
